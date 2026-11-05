@@ -1,0 +1,23 @@
+version: 1
+
+language: typescript
+
+typescript:
+  version: "5.9"
+
+dependencies:
+  - "@playwright/test": "1.56"
+  - dotenv: "17"
+  - typescript: "5.9"
+
+build:
+  tool: npm
+
+test:
+  framework: playwright
+  reports:
+    - html
+
+code_style:
+  formatter: none
+  linter: none

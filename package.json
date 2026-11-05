@@ -1,0 +1,23 @@
+{
+  "name": "greencity-taqc-playwright",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "description": "Playwright + TypeScript starter for GreenCity UI and API tests",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "playwright test",
+    "test:ui": "playwright test tests/ui",
+    "test:headed": "playwright test --headed",
+    "test:ui-mode": "playwright test --ui",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "@types/node": "^24.6.0",
+    "dotenv": "^17.2.3",
+    "typescript": "^5.9.3"
+  }
+}
