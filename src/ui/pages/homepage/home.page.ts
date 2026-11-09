@@ -1,8 +1,9 @@
 import { Page } from '@playwright/test';
-import { BasePage } from '../base.page';
+import { GreenCityPage } from '../green-city.page';
 
-export class HomePage extends BasePage {
+export class HomePage extends GreenCityPage {
   constructor(page: Page) {
     super(page);
   }
 }
+
