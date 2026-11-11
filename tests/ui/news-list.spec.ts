@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from '../support/ui.fixture';
 import { NewsListPage } from '../../src/ui/pages/news/news-list.page';
 
 test('Eco News page should be displayed', async ({ page }) => {

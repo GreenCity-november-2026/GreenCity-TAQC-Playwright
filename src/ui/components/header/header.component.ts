@@ -1,7 +1,5 @@
-
 import { Locator, Page } from '@playwright/test';
 import { BaseComponent } from '../base.component';
-import { AuthModal } from '../../modals/auth/auth.modal';
 
 export class HeaderComponent extends BaseComponent {
   readonly logo: Locator;
@@ -14,12 +12,7 @@ export class HeaderComponent extends BaseComponent {
     this.signInLink = this.root.locator('a.header_sign-in-link');
   }
 
-  async openSignIn(): Promise<AuthModal> {
+  async openSignIn(): Promise<void> {
     await this.signInLink.click();
-
-    const modal = new AuthModal(this.page);
-
-    await modal.waitUntilVisible();
-    return modal;
   }
 }

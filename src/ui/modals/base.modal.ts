@@ -9,4 +9,8 @@ export abstract class BaseModal extends BaseComponent {
   async isOpen(): Promise<boolean> {
     return this.root.isVisible();
   }
+
+   async close(): Promise<void> {
+    await this.root.locator('a.close-modal-window').click();
+  }
 }
