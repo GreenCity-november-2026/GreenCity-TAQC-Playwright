@@ -1,6 +1,6 @@
 import { Locator, Page } from '@playwright/test';
 import { BaseModal } from '../base.modal';
-import { ProfilePage } from '../../pages/profile/profile.page';
+import type { ProfilePage } from '../../pages/profile/profile.page';
 
 export class AuthModal extends BaseModal {
   readonly emailInput: Locator;
@@ -24,6 +24,10 @@ export class AuthModal extends BaseModal {
 
     await this.page.waitForURL(
       /#\/greenCity\/profile(?:\/[^/?#]+)?(?:\?.*)?$/
+    );
+
+    const { ProfilePage } = await import(
+      '../../pages/profile/profile.page'
     );
 
     return new ProfilePage(this.page);
