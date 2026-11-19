@@ -4,6 +4,7 @@ import type { HomePage } from "../../src/ui/pages/homepage/home.page";
 import { PageFactory } from "../../src/ui/page.factory";
 
 type UiFixtures = {
+  pages: PageFactory;
   homePage: HomePage;
 };
 
@@ -15,10 +16,14 @@ export const test = base.extend<UiFixtures>({
     });
     await use(page);
   },
-  homePage: async ({ page }, use) => {
-    const factory = new PageFactory(page);
+  pages: async ({ page }, use) => {
+    await use(new PageFactory(page));
+  },
+
+  homePage: async ({ page, pages }, use) => {
     await page.goto(testValues.baseUiUrl);
-    await use(factory.createHomePage());
+
+    await use(pages.createHomePage());
   },
 });
 
