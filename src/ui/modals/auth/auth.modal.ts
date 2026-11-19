@@ -1,6 +1,7 @@
 import { Locator, Page } from '@playwright/test';
 import { BaseModal } from '../base.modal';
 import type { ProfilePage } from '../../pages/profile/profile.page';
+import type { PageFactory } from '../../page.factory';
 
 export class AuthModal extends BaseModal {
   readonly emailInput: Locator;
@@ -8,8 +9,11 @@ export class AuthModal extends BaseModal {
   readonly submitButton: Locator;
   readonly generalError: Locator;
 
-  constructor(page: Page) {
-    super(page, page.locator('app-auth-modal'));
+  constructor(
+  page: Page,
+  private readonly factory: PageFactory
+) {
+  super(page, page.locator('app-auth-modal'));
 
     this.emailInput = this.root.locator('#email');
     this.passwordInput = this.root.locator('#password');
@@ -26,11 +30,7 @@ export class AuthModal extends BaseModal {
       /#\/greenCity\/profile(?:\/[^/?#]+)?(?:\?.*)?$/
     );
 
-    const { ProfilePage } = await import(
-      '../../pages/profile/profile.page'
-    );
-
-    return new ProfilePage(this.page);
+    return this.factory.createProfilePage();
   }
 
   async getError(): Promise<string> {

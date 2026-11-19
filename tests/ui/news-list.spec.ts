@@ -1,9 +1,10 @@
 import { expect, test } from '../support/ui.fixture';
-import { NewsListPage } from '../../src/ui/pages/news/news-list.page';
+import { PageFactory } from '../../src/ui/page.factory';
 import { en } from '../../src/config/en';
 
 test('Eco News page should be displayed', async ({ page }) => {
-  const newsListPage = new NewsListPage(page);
+  const factory = new PageFactory(page);
+const newsListPage = factory.createNewsListPage();
 
   await newsListPage.open();
 
