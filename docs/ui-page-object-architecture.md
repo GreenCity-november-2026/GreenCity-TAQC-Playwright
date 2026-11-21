@@ -69,6 +69,15 @@ flowchart TB
 - Стан екрана без нового URL — це режим сторінки, а не нова сторінка. Так зроблено для прев'ю новини й події та для закладки «Збережене».
 - Дрібні Angular-компоненти (`remaining-count`, `change-view-button`, `stat-row`, `rating-display`, `google-btn`, `spinner`, `input-error`) не стають окремими page object. Їхні дії — методи батька або `Element`.
 
+### PageFactory та створення Page Objects
+
+- `PageFactory` (`src/ui/page.factory.ts`) відповідає за централізоване створення Page Objects.
+- Усі конкретні Page Objects використовують єдину сигнатуру конструктора: `(page: Page, factory: PageFactory)`.
+- `PageFactory` створює сторінки через окремі методи `createXxxPage()`, передаючи їм поточний `page` і власний екземпляр фабрики.
+- `HeaderComponent` і `FooterComponent` отримують `PageFactory` через конструктор для навігації між сторінками.
+- Компоненти та модалки використовують `import type` для типів Page Objects. Для створення сторінок вони звертаються до `PageFactory`, щоб уникати циклічних runtime-імпортів.
+- Playwright fixture `pages` у `tests/support/ui.fixture.ts` створює фабрику для кожного тесту. Інші fixtures і тести отримують її через Dependency Injection.
+
 ## Оболонка
 
 `MainComponent` тримає хедер і `<router-outlet>`. `GreencityMainComponent` тримає пошуковий попап, вкладений outlet і футер.
@@ -313,6 +322,7 @@ Sign in, Sign up і «забув пароль» маршруту не мають
 ```
 src/ui
 ├── base.ts
+├── page.factory.ts
 ├── pages
 │   ├── base.page.ts
 │   ├── green-city.page.ts
