@@ -7,11 +7,9 @@ test.describe("Eco News Navigation", () => {
 
     await expect(page).toHaveURL(/#\/greenCity\/news$/);
 
-    await expect(newsListPage.heading).toBeVisible();
-
-    await expect(newsListPage.heading).toHaveText(
-      new RegExp(`^${en.news.heading}$`, "i"),
-    );
+    await expect(newsListPage.heading).toHaveText(en.news.heading, {
+      ignoreCase: true,
+    });
 
     await expect(newsListPage.newsCards.first()).toBeVisible();
 

@@ -7,8 +7,7 @@ test("Eco News page should be displayed", async ({ pages }) => {
   await newsListPage.open();
 
   await expect(newsListPage.root).toBeVisible();
-  await expect(newsListPage.heading).toBeVisible();
-  await expect(newsListPage.heading).toHaveText(
-    new RegExp(`^${en.news.heading}$`, "i"),
-  );
+  await expect(newsListPage.heading).toHaveText(en.news.heading, {
+    ignoreCase: true,
+  });
 });
